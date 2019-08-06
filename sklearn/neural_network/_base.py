@@ -175,6 +175,23 @@ DERIVATIVES = {'identity': inplace_identity_derivative,
                'logistic': inplace_logistic_derivative,
                'relu': inplace_relu_derivative}
 
+def absolute_loss(y_true, y_pred):
+    """Compute the mean absolute loss for regression.
+
+    Parameters
+    ----------
+    y_true : array-like or label indicator matrix
+        Ground truth (correct) values.
+
+    y_pred : array-like or label indicator matrix
+        Predicted values, as returned by a regression estimator.
+
+    Returns
+    -------
+    loss : float
+        The degree to which the samples are correctly predicted.
+    """
+    return ((y_true - y_pred)).mean()
 
 def squared_loss(y_true, y_pred):
     """Compute the squared loss for regression.
@@ -245,5 +262,5 @@ def binary_log_loss(y_true, y_prob):
              xlogy(1 - y_true, 1 - y_prob)).sum() / y_prob.shape[0]
 
 
-LOSS_FUNCTIONS = {'squared_loss': squared_loss, 'log_loss': log_loss,
+LOSS_FUNCTIONS = {'absolute_loss': absolute_loss,'squared_loss': squared_loss, 'log_loss': log_loss,
                   'binary_log_loss': binary_log_loss}
