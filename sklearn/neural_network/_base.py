@@ -191,7 +191,7 @@ def absolute_loss(y_true, y_pred):
     loss : float
         The degree to which the samples are correctly predicted.
     """
-    return ((y_true - y_pred)).mean()
+    return (np.absolute(y_true - y_pred)).mean()
 
 def squared_loss(y_true, y_pred):
     """Compute the squared loss for regression.
